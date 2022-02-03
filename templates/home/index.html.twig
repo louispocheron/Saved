@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+{% if app.user == true %}
+ <h1> vous etes connecté avec  {{ app.user.lastName }} </h1>
+ <a href="{{ path('app_logout') }}">Se deconnecter</a>
+{% else %}
+    <h1> vous n'etes pas connecté </h1>
+    <h2>connectez vous<a href="/login">ici</a></h2>
+{% endif %}
+{% endblock %}
+
+
+

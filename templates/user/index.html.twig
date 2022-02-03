@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<div> 
+    {# EMAIL DE L'UTILISATEUR #}
+    {{ app.user.username }}
+</div>
+
+<div> 
+    {# PSEUDO UTILISATEUR #}
+    {{ app.user.lastname }}
+</div>
+
+<div> 
+    {# PASSWORD HASHED UTILISATEUR #}
+    {{ app.user.password }}
+</div>
+
+
+
+
+{% endblock %}

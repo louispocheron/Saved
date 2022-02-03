@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
+{% block title %}S'inscire{% endblock %}
+{% block body %}
+
+ {% if is_granted('ROLE_USER') == false %}
+ 
+    <div class="containermain">
+        <div class="mainreg">
+            <div class="assetregister">
+                <h1>Inscription</h1>
+                <img src="{{ asset('build/images/logo.png') }}" alt="logo">
+            </div>
+            <div class="subreg">
+                {{ form_start(registrationForm) }}
+                    <div class="form-group">
+                       
+                        {{ form_row(registrationForm.lastName, {
+                                attr:{"placeholder": "nom d'utilisateur"},   
+                            }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(registrationForm.email,
+                        {attr:{'placeholder': 'adresse email'}}
+                        ) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(registrationForm.plainPassword, {
+                            attr:{'placeholder': 'mot de passe'}
+                        }) }}
+                    </div>
+                        {{ form_row(registrationForm.agreeTerms) }}
+
+                        <button type="submit" class="btnregister">S'inscrire</button>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
+    {% else %}
+
+<p> vous etes deja connecté </p>
+ {% endif %}
+
+
+{% endblock %}
