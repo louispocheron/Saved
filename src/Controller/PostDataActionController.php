@@ -8,6 +8,7 @@ use App\Form\RegistrationFormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,6 +24,7 @@ class PostDataActionController extends AbstractController
     public function create(Request $request, EntityManagerInterface $entityManager)
     {
         $action = new Action();
+        $action -> setUsers($this->getUser());
 
         $form = $this->createFormBuilder($action)
                      ->add('distance', NumberType::class, [
@@ -52,7 +54,13 @@ class PostDataActionController extends AbstractController
                         'label' => 'Durée'
                         ])
                      ->add('raison', TextType::class, array('label' => 'Raison'))
+                     ->add('donation', NumberType::class, [
+                            'attr' => [
+                                'placeholder' => 'Montant en €',
+                                'class' => 'form-control'
+                            ]])
                      ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
+
 
                      ->getForm();
         $form->handleRequest($request);	

@@ -63,6 +63,7 @@ class Action
     private $raison;
 
     /**
+     * @ORM\GeneratedValue
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="actions")
      */
     private $users;

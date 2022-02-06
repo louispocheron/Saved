@@ -2,11 +2,19 @@
 
 {% block body %}
 
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 {{form_start(formAction)}}
 {{form_row(formAction)}}
 
 
 {{form_end(formAction)}}
+
+ {% else %}
+    <h1>Vous n'avez pas accès à cette page, vous devez d'abord vous connecter</h1>
+    
+{% endif %}
+
 
 
 

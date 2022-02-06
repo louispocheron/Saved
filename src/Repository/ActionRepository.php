@@ -35,6 +35,16 @@ class ActionRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findByUser($user)
+    {
+        return $this->createQueryBuilder('action')
+            ->andWhere('action.users = :user')
+            ->setParameter('user', $user->getId())
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
 
     /*
     public function findOneBySomeField($value): ?Action
