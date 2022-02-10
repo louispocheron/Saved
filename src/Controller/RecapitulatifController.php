@@ -15,7 +15,7 @@ class RecapitulatifController extends AbstractController
 
 
     
-    public function index(ActionRepository $repo): Response
+    public function chosse(ActionRepository $repo): Response
     {
 
         return $this->render('recapitulatif/index.html.twig', [

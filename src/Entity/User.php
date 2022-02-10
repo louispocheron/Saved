@@ -54,9 +54,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=associations::class, inversedBy="users")
+     */
+    private $association_id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Associations::class, mappedBy="user")
+     */
+    private $associations;
+
     public function __construct()
     {
         $this->actions = new ArrayCollection();
+        $this->association_id = new ArrayCollection();
+        $this->associations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -198,6 +210,57 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|associations[]
+     */
+    public function getAssociationId(): Collection
+    {
+        return $this->association_id;
+    }
+
+    public function addAssociationId(associations $associationId): self
+    {
+        if (!$this->association_id->contains($associationId)) {
+            $this->association_id[] = $associationId;
+        }
+
+        return $this;
+    }
+
+    public function removeAssociationId(associations $associationId): self
+    {
+        $this->association_id->removeElement($associationId);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Associations[]
+     */
+    public function getAssociations(): Collection
+    {
+        return $this->associations;
+    }
+
+    public function addAssociation(Associations $association): self
+    {
+        if (!$this->associations->contains($association)) {
+            $this->associations[] = $association;
+            $association->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssociation(Associations $association): self
+    {
+        if ($this->associations->removeElement($association)) {
+            $association->removeUser($this);
+        }
 
         return $this;
     }

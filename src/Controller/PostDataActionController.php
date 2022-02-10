@@ -39,7 +39,6 @@ class PostDataActionController extends AbstractController
                                   'html5' => false,
                         ])
                      ->add('timestart', TimeType::class, [
-                        'widget' => 'choice',
                         'input'  => 'datetime_immutable',
                         'label' => 'Heure de départ',
                     ])

@@ -68,6 +68,11 @@ class Action
      */
     private $users;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Associations::class, inversedBy="id_action")
+     */
+    private $associations;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -189,6 +194,18 @@ class Action
     public function setUsers(?user $users): self
     {
         $this->users = $users;
+
+        return $this;
+    }
+
+    public function getAssociations(): ?Associations
+    {
+        return $this->associations;
+    }
+
+    public function setAssociations(?Associations $associations): self
+    {
+        $this->associations = $associations;
 
         return $this;
     }

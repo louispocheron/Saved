@@ -4,5 +4,18 @@
 
 {% block body %}
 
+
+
+
+{% if actions == true %}
     {{ dump(actions) }}
+
+    {# {{ actions.villedepart}}  
+    {{ actions.villearrive}}   #}
+
+ {% else %}
+    <p>Aucune saisie</p>
+{% endif %}
+
 {% endblock %}
+{# [0] #}
