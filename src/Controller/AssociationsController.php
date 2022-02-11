@@ -21,11 +21,40 @@ class AssociationsController extends AbstractController
     public function index(Request $Request, AssociationsRepository $repo, EntityManagerInterface $entityManager): response
     {
 
+        $em = $this->getDoctrine()->getManager();
 
+        $user = $this->getUser();
+        $associations = $em->getRepository(Associations::class)->find('12');
+        // // dd($associations);
+        // $associations->addUser($user);
+        // $em->persist($associations);
+        // $em->flush();
+
+
+        $user->addAssociationId($associations);
+        $em->persist($user);
+        $em->flush();
+
+
+        
+
+
+        // $user->addAssociationId($associations);
+
+        // $entityManager->persist($associations);
+        // $entityManager->flush();    
+        
+        
         return $this->render('associations/index.html.twig', [
-            'user' => $this->getUser(),
-            'associations' => $repo->findAllAssociations(),
+            'user' => $repo->findAssociationByUser($user),
+            'bruh' => $associations,
+            'associations' => $repo->findAll(),
         ]);
+    }
+    
+    public function userChooseAssociation()
+    {
+     
     }
 
 

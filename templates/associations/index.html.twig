@@ -4,26 +4,51 @@
 
 {% block body %}
 
-        {{ dump(associations.1) }}
+        
 
 
-{% if app.user == false %}
+{# {% if app.user == false %}
     <p> connectez vous pour choisir votre association</p>
 {% else %}
 
 
-<p> vous etes connecté en tant que {{app.user.lastName}} </p>
-<div class='associationscontainer' onclick="return(association.id)">
+<p> vous etes connecté en tant que {{app.user.lastName}} </p> #}
+{# <div class='associationscontainer' onclick="return(association.id)">
     {% for association in associations %}
     <div class="association {{association.id}}">
         <h2>{{association.name}}</h2>
         <img src="{{asset('/build/uploads/' ~ association.logo)}}"></img>
         <p>{{association.description}}</p>
     </div>
-               {# {{association.logo}} #}
     {% endfor %}
 </div>
+{% endif %} #}
+{# 
+ {% for d in user.getAssociations %}
+    {% dump(d) %}
+{% endfor %} #}
+
+
+
+ {{dump(user)}}
+
+
+{% if bruh.getUser == null %}
+    <p>votre association n'as aucun adhérant</p>
+{% else %}
+{# {{dump(user)}} #}
+{# {% for users in bruh.getUsers %}
+    <li>{{user.lastName}}</li>
+{% endfor %}  #}
 {% endif %}
+
+
+{# {% for A in user.getAssociations %}
+{{a.name}}
+{% endfor %} #}
+
+
+
 
 
 {% endblock %}

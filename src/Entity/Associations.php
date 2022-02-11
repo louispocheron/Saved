@@ -125,8 +125,7 @@ class Associations
     public function addUser(User $user)
     {
         if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addAssociationId($this);
+            $this->users = $user;
         }
 
         return $this;
